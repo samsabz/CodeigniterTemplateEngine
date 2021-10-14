@@ -1,7 +1,7 @@
 # Codeigniter Template Parser Engine
 
 ## Installation
-1. Download this project
+1. Download this project [a link](https://github.com/samsabz/CodeigniterTemplateEngine/archive/refs/heads/main.zip)
 2. Copy libraries/Theme.php to your application/libraries/ folder
 3. Copy config/theme.php to your application/config/ folder
 4. Create the folder if not exists: application/cach
