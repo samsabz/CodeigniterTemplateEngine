@@ -36,3 +36,73 @@ There is no need to “echo” or do something with the data returned by ``$this
 automatically passed to the output class to be sent to the browser. However, if you do want the data
 returned instead of sent to the output class you can pass TRUE (boolean) as the third parameter:
 ```$string = $this->theme->parse('products/list', $data, TRUE);```
+
+## Example
+foreach:
+```From the above example, we are creating a template file at products/list.php:```
+``
+<ul>
+{foreach products as product}
+<li><a href="{product[link]}">{product[title]}</a></li>
+{/foreach}
+</ul>
+``
+The html output will be:
+``
+<ul>
+<li><a href="/shirts">Shirts</a></li>
+<li><a href="/trousers">Trousers</a></li>
+<li><a href="/shoes">Shoes</a></li>
+<li><a href="/belts">Belts</a></li>
+</ul>
+``
+To achieve the same output by php code:
+``
+<ul>
+<?php foreach ( $products as $product ) : ?>
+<li><a href="<?php echo $product['link'] ; ?>"><?php echo $product['title'] ; ?></a></li>
+<?php endforeach ; ?>
+</ul>
+``
+Use foreach for associative array
+``
+<ul>
+{foreach options as item = value}
+<li>{item} => {value}</li>
+{/foreach}
+</ul>
+``
+
+if/elseif/else:
+``
+{if product[active]}
+... do something ...
+{elif product[published]}
+... some other thing ...
+{/if}
+``
+echo:
+All variables and methods will be automatically preceded by echo:
+``
+{somevar}
+<?php echo $somevar ; ?>
+{some_array[assoc_key]}
+<?php echo $some_array['assoc_key'] ; ?>
+{another_array[$key]}
+<?php echo $another_array[$key] ; ?>
+{date('Y-m-d H:i:s', now)}
+<?php echo date ( 'Y-m-d H:i:s' , $now ) ; ?>
+{time()}
+<?php echo time ( ) ; ?>
+{fname . lname}
+<?php echo $fname . $lname ; ?>
+{books->get_by_author(author)->first()->title}
+<?php echo $books -> get_by_author( $author ) -> first() -> title ; ?>
+``
+constants:
+To use constants, precede the constant with #:
+``
+{if defined('APP_VERSION') && #APP_VERSION > 2.0}
+... do something ...
+{/if}
+``
